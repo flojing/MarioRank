@@ -1,0 +1,133 @@
+.title-img {
+  width: 100%;
+  height: 100%;
+}
+
+.mario-img {
+  width: 100%;
+  height: 100%;
+}
+
+.home-welcome-text {
+  font-size: 1.2rem;
+  text-align: start;
+  padding-bottom: 2rem;
+}
+
+.button-wrapper {
+  text-align: center;
+}
+
+.home-login-button-container {
+  position: relative;
+  display: inline-block;
+}
+
+.blue-button {
+  width: 100%;
+  height: 100%;
+}
+
+.home-login-button-container:hover .blue-button {
+  content: url("../assets/images/black-button.png");
+}
+
+.home-login-button-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: black;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close-button {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-login-form label {
+  color: white;
+  font-size: 1rem;
+}
+
+.modal-login-form input {
+  padding: 10px;
+  border: 1px solid #888;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.modal-login-form input:focus {
+  outline: none;
+  border-color: #009cda;
+}
+
+.modal-login-form button {
+  background-color: #009cda;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.modal-login-form button:hover {
+  background-color: #007bb5;
+}
+
+.login-divider {
+  background-image: url("../assets/images/divider.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 5px;
+  margin-top: 12px;
+}
