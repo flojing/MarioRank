@@ -21,7 +21,14 @@ const app = express();
 import cors from "cors";
 
 if (process.env.CLIENT_URL != null) {
-  app.use(cors({ origin: [process.env.CLIENT_URL] }));
+  app.use(
+    cors({
+      origin: process.env.CLIENT_URL || "http://localhost:3000",
+      credentials: true,
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      allowedHeaders: ["Content-Type", "Authorization"],
+    }),
+  );
 }
 
 // If you need to allow extra origins, you can add something like this:
@@ -52,10 +59,10 @@ app.use(
 
 // Uncomment one or more of these options depending on the format of the data sent by your client:
 
-// app.use(express.json());
-// app.use(express.urlencoded());
-// app.use(express.text());
-// app.use(express.raw());
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.text());
+app.use(express.raw());
 
 /* ************************************************************************* */
 
@@ -63,6 +70,10 @@ app.use(
 import router from "./router";
 
 // Mount the API router under the "/api" endpoint
+app.use(
+  "/assets",
+  express.static(path.join(__dirname, "../../client/src/assets")),
+);
 app.use(router);
 
 /* ************************************************************************* */
