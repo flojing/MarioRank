@@ -58,6 +58,11 @@ class userRepository {
     return rows[0] as User | undefined;
   }
 
+  async readAll() {
+    const [rows] = await databaseClient.query<Rows>("SELECT * FROM user");
+    return rows as User[];
+  }
+
   async updateAvatar(userId: number, profilePic: string) {
     await databaseClient.query("UPDATE user SET profile_pic = ? WHERE id = ?", [
       profilePic,

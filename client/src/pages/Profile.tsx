@@ -1,4 +1,4 @@
-import { Camera, LogOut } from "lucide-react";
+import { Camera, DoorOpen, RefreshCw, UserRoundSearch } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Title from "../assets/images/Mario-RANK-12-02-2025.png";
@@ -164,6 +164,7 @@ export default function Profile() {
         `${import.meta.env.VITE_API_URL}/api/users/${user.id}/avatar`,
         {
           method: "PUT",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
@@ -260,6 +261,30 @@ export default function Profile() {
     setIsDescriptionModalOpen(true);
   };
 
+  // Fonction pour réinitialiser les catégories
+  const handleReset = async () => {
+    try {
+      // Supprimer tous les classements de l'utilisateur
+      await fetch(`${import.meta.env.VITE_API_URL}/api/rankings/${user.id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+
+      // Remettre tous les items dans items-to-sort
+      setItems((prevItems) => [
+        ...prevItems,
+        ...goodItems,
+        ...mediumItems,
+        ...badItems,
+      ]);
+      setGoodItems([]);
+      setMediumItems([]);
+      setBadItems([]);
+    } catch (error) {
+      console.error("Error resetting rankings:", error);
+    }
+  };
+
   return (
     <DndContext
       sensors={sensors}
@@ -269,7 +294,18 @@ export default function Profile() {
       <div className="profile-page-container">
         <div className="profile-header">
           <img src={Title} alt="titre" className="title-img-profile" />
-          <LogOut size={36} onClick={handleLogout} />
+          <div className="header-icons">
+            <UserRoundSearch
+              className="ranking-icon"
+              size={36}
+              onClick={() => navigate("/ranking")}
+            />
+            <DoorOpen
+              className="logout-icon"
+              size={36}
+              onClick={handleLogout}
+            />
+          </div>
         </div>
         <div className="avatar-container">
           <div className="avatar-wrapper">
@@ -294,12 +330,13 @@ export default function Profile() {
           <div className="profile-ranking-title">
             <img src={ItemBox} alt="item box" className="item-box-image" />
             <h2>Classe les items</h2>
+            <RefreshCw size={36} onClick={handleReset} className="reset-icon" />
           </div>
 
           <div className="ranking-categories">
             <Droppable id="good">
               <div className="category good">
-                <h3>Good</h3>
+                <h3>Wooow</h3>
                 <div className="items-container">
                   {goodItems.map((item) => (
                     <DraggableItem
@@ -308,6 +345,7 @@ export default function Profile() {
                       onInfoClick={() => handleItemClick(item)}
                       imageSrc={item.item_image}
                       altText={item.item_name}
+                      showOnlyImage={true}
                     >
                       <p>{item.item_name}</p>
                     </DraggableItem>
@@ -318,7 +356,7 @@ export default function Profile() {
 
             <Droppable id="medium">
               <div className="category medium">
-                <h3>Medium</h3>
+                <h3>Mouais</h3>
                 <div className="items-container">
                   {mediumItems.map((item) => (
                     <DraggableItem
@@ -327,6 +365,7 @@ export default function Profile() {
                       onInfoClick={() => handleItemClick(item)}
                       imageSrc={item.item_image}
                       altText={item.item_name}
+                      showOnlyImage={true}
                     >
                       <p>{item.item_name}</p>
                     </DraggableItem>
@@ -337,7 +376,7 @@ export default function Profile() {
 
             <Droppable id="bad">
               <div className="category bad">
-                <h3>Bad</h3>
+                <h3>Beurk</h3>
                 <div className="items-container">
                   {badItems.map((item) => (
                     <DraggableItem
@@ -346,6 +385,7 @@ export default function Profile() {
                       onInfoClick={() => handleItemClick(item)}
                       imageSrc={item.item_image}
                       altText={item.item_name}
+                      showOnlyImage={true}
                     >
                       <p>{item.item_name}</p>
                     </DraggableItem>
@@ -364,6 +404,7 @@ export default function Profile() {
                   onInfoClick={() => handleItemClick(item)}
                   imageSrc={item.item_image}
                   altText={item.item_name}
+                  showOnlyImage={false}
                 >
                   <p>{item.item_name}</p>
                 </DraggableItem>

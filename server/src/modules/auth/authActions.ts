@@ -40,7 +40,7 @@ const login: RequestHandler = async (req, res, next) => {
 
     res.setHeader(
       "Set-Cookie",
-      `auth_token=${token}; Path=/; Max-Age=${24 * 60 * 60}; SameSite=Lax`,
+      `auth_token=${token}; Path=/; Max-Age=${24 * 60 * 60}; SameSite=Strict; HttpOnly; Secure`,
     );
     res.status(200).json({
       user: userWithoutPassword,
@@ -96,7 +96,7 @@ const logout: RequestHandler = async (_, res) => {
   try {
     res.setHeader(
       "Set-Cookie",
-      "auth_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly",
+      "auth_token=; Path=/; Max-Age=0; SameSite=Strict; HttpOnly; Secure",
     );
     res.status(200).json({ message: "Déconnexion réussie" });
   } catch (error) {

@@ -1,46 +1,63 @@
+body {
+  overflow-x: hidden;
+}
+
 .title-img {
   width: 100%;
   height: 100%;
 }
 
 .mario-img {
-  width: 100%;
-  height: 100%;
+  width: 70%;
+  height: 70%;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
 }
 
 .home-welcome-text {
   font-size: 1.2rem;
   text-align: start;
-  padding-bottom: 2rem;
 }
 
 .button-wrapper {
   text-align: center;
+  position: relative; /* Ajout pour le positionnement */
 }
 
 .home-login-button-container {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: black;
+  padding: 0px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
 }
 
-.blue-button {
-  width: 100%;
-  height: 100%;
-}
-
-.home-login-button-container:hover .blue-button {
-  content: url("../assets/images/black-button.png");
+.home-login-button-container:hover {
+  background: #2f2f2f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 156, 218, 0.3);
+  border: 2px solid #009cda;
 }
 
 .home-login-button-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -60%);
   color: white;
   font-size: 1.4rem;
   font-weight: bold;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-gif {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
 }
 
 .modal {
@@ -108,20 +125,23 @@
 }
 
 .modal-login-form button {
-  background-color: #009cda;
+  background-color: #2f2f2f;
   color: white;
   padding: 10px;
-  border: none;
+  border: 2px solid transparent; /* Ajout d'une bordure transparente */
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease; /* Changé pour inclure toutes les transitions */
   width: 60%;
   margin: 0 auto;
+  box-sizing: border-box; /* Assure que la bordure est incluse dans la largeur/hauteur */
 }
 
 .modal-login-form button:hover {
-  background-color: #007bb5;
+  background: black;
+  box-shadow: 0 4px 15px rgba(0, 156, 218, 0.3);
+  border: 2px solid #009cda;
 }
 
 .login-divider {
@@ -130,4 +150,139 @@
   background-size: contain;
   height: 5px;
   margin-top: 12px;
+}
+
+.title-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.background-cup {
+  position: absolute;
+  width: 200px; /* Taille fixe pour éviter la déformation */
+  height: 200px; /* Taille fixe pour éviter la déformation */
+  background: url("../assets/images/img_link-cup.png") no-repeat center center;
+  background-size: contain;
+  z-index: -1;
+  opacity: 1;
+  animation: rotate 30s linear infinite;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title-img {
+  position: relative;
+  width: 100%;
+  max-width: 400px; /* Limite la taille maximale */
+  height: auto; /* Garde le ratio */
+  z-index: 1;
+}
+
+.lakitu-container {
+  width: 100%;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.lakitu-gif {
+  width: 100px;
+  height: auto;
+  position: absolute;
+  animation: slideLeftRight 8s linear infinite;
+}
+
+@keyframes slideLeftRight {
+  0% {
+    left: -100px;
+  }
+  100% {
+    left: calc(100% + 100px);
+  }
+}
+
+/* Ajuster pour desktop */
+@media (min-width: 600px) {
+  .lakitu-container {
+    height: 150px;
+    position: absolute; /* Position absolue en desktop */
+    top: 10%; /* Centre verticalement */
+    transform: translateY(-50%); /* Ajuste le centrage vertical */
+    z-index: 1; /* Pour passer derrière le bouton */
+  }
+
+  .lakitu-gif {
+    width: 150px;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Ajustez la version desktop */
+@media (min-width: 600px) {
+  .background-cup {
+    width: 300px; /* Plus grande taille pour desktop */
+    height: 300px; /* Plus grande taille pour desktop */
+  }
+
+  .title-container {
+    width: 35vw;
+    padding: 3rem;
+  }
+}
+
+@media (min-width: 600px) {
+  .title-img {
+    width: 35vw;
+  }
+
+  .mario-img {
+    width: 30vw;
+    margin: 0;
+  }
+
+  .home-images-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .home-welcome-text {
+    font-size: 1.5rem;
+    text-align: center;
+    padding-bottom: 2rem;
+    padding-top: 1rem;
+  }
+
+  .button-wrapper {
+    text-align: center;
+    position: relative;
+    margin-top: 2rem;
+  }
+
+  .home-login-button-container {
+    padding: 0px 30px;
+  }
+
+  .home-login-button-text {
+    font-size: 1.6rem;
+  }
+
+  .login-gif {
+    width: 100px;
+    height: 100px;
+  }
 }

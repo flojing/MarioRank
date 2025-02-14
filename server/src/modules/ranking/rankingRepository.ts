@@ -45,6 +45,12 @@ class RankingRepository {
     );
   }
 
+  async deleteAllByUserId(userId: number) {
+    await databaseClient.query("DELETE FROM ranking WHERE user_id = ?", [
+      userId,
+    ]);
+  }
+
   async exists(userId: number, itemId: number) {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT id FROM ranking WHERE user_id = ? AND item_id = ?",

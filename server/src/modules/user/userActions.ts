@@ -78,4 +78,14 @@ const updateAvatar: RequestHandler = async (req, res) => {
   }
 };
 
-export default { add, updateAvatar };
+const getAllUsers: RequestHandler = async (req, res) => {
+  try {
+    const users = await userRepository.readAll();
+    res.json(users);
+  } catch (err) {
+    console.error("Error fetching users:", err);
+    res.status(500).json({ error: "Erreur interne du serveur" });
+  }
+};
+
+export default { add, updateAvatar, getAllUsers };

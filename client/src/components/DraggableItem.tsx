@@ -6,6 +6,7 @@ interface DraggableItemProps {
   imageSrc: string;
   altText: string;
   children: React.ReactNode;
+  showOnlyImage?: boolean; // nouveau prop
 }
 
 export const DraggableItem: React.FC<DraggableItemProps> = ({
@@ -14,23 +15,21 @@ export const DraggableItem: React.FC<DraggableItemProps> = ({
   imageSrc,
   altText,
   children,
+  showOnlyImage = false,
 }) => {
-  // Sans activationConstraint ici
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id,
-  });
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({ id });
 
   const style = transform
     ? { transform: `translate3d(${transform.x}px, ${transform.y}px, 0)` }
     : undefined;
 
-  // Pour bloquer le clic complet sur la carte (si souhaité)
+  // Bloque le clic sur la carte
   const handleCardClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
   };
 
-  // Pour empêcher le drag si on clique sur l'icône
+  // Stoppe le drag si on clique sur l'icône
   const handleIconMouseDown = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
@@ -41,11 +40,17 @@ export const DraggableItem: React.FC<DraggableItemProps> = ({
       style={style}
       {...listeners}
       {...attributes}
-      className="draggable-card"
-      onClick={handleCardClick} // Empêche le clic sur la carte
+      className={
+        showOnlyImage
+          ? "draggable-card card-small" // classe spéciale si on veut un style différent
+          : "draggable-card"
+      }
+      onClick={handleCardClick}
     >
       <img src={imageSrc} alt={altText} draggable={false} />
-      {children}
+
+      {!showOnlyImage && children}
+
       <span
         className="info-icon"
         onMouseDown={handleIconMouseDown}

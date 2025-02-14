@@ -50,4 +50,15 @@ const remove: RequestHandler = async (req, res) => {
   }
 };
 
-export default { add, getUserRankings, remove };
+const removeAllByUserId: RequestHandler = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    await rankingRepository.deleteAllByUserId(Number(userId));
+    res.status(200).json({ message: "All rankings deleted successfully" });
+  } catch (err) {
+    console.error("Error deleting all rankings:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export default { add, getUserRankings, remove, removeAllByUserId };

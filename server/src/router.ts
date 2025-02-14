@@ -19,6 +19,7 @@ router.post("/api/users", userActions.add);
 router.post("/api/auth/login", authActions.login);
 router.put("/api/users/:id/avatar", userActions.updateAvatar);
 router.post("/api/auth/logout", authActions.logout);
+router.get("/api/users", userActions.getAllUsers);
 
 import rankingActions from "./modules/ranking/rankingActions";
 
@@ -26,6 +27,7 @@ import rankingActions from "./modules/ranking/rankingActions";
 router.post("/api/rankings", rankingActions.add);
 router.get("/api/rankings/:userId", rankingActions.getUserRankings);
 router.delete("/api/rankings/:userId/:itemId", rankingActions.remove);
+router.delete("/api/rankings/:userId", rankingActions.removeAllByUserId); // New route
 
 /* ************************************************************************* */
 

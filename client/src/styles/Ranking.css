@@ -1,0 +1,228 @@
+.ranking-page-container {
+  background-color: #2f2f2f;
+  min-height: 100vh;
+  width: 100%;
+  color: white;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 12px;
+}
+
+.ranking-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.ranking-back-icon {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.ranking-back-icon:hover {
+  color: #009cda;
+  transform: scale(1.1);
+}
+
+.ranking-users-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.ranking-user-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+  cursor: pointer;
+}
+
+.ranking-user-card img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.ranking-user-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.ranking-modal-content {
+  background-color: #2f2f2f;
+  padding: 2rem;
+  border-radius: 10px;
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+
+  /* Personnalisation de la scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #009cda #1a1a1a;
+}
+
+/* Styles pour Webkit (Chrome, Safari, etc.) */
+.ranking-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ranking-modal-content::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 4px;
+}
+
+.ranking-modal-content::-webkit-scrollbar-thumb {
+  background-color: #009cda;
+  border-radius: 4px;
+  border: 2px solid #1a1a1a;
+}
+
+.ranking-modal-content::-webkit-scrollbar-thumb:hover {
+  background-color: #007bb5;
+}
+
+.ranking-close-button {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: white;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+}
+
+.ranking-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.ranking-category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  padding: 1rem 0;
+  min-height: 200px;
+}
+
+.ranking-good {
+  border: 2px solid #4caf50;
+}
+.ranking-medium {
+  border: 2px solid #ffc107;
+}
+.ranking-bad {
+  border: 2px solid #f44336;
+}
+
+.ranking-items-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.ranking-item-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem;
+  border-radius: 8px;
+  width: 80px;
+}
+
+.ranking-item-card img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.ranking-item-card p {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+@media (min-width: 600px) {
+  .ranking-users-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .ranking-user-card {
+    width: 30%;
+    max-width: none;
+  }
+  .ranking-user-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0.5rem;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .ranking-user-card:hover {
+    transform: translateY(-2px);
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #009cda;
+    box-shadow: 0 4px 15px rgba(0, 156, 218, 0.2);
+  }
+
+  .ranking-user-card img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+  }
+
+  .ranking-user-card:hover img {
+    transform: scale(1.1);
+  }
+
+  .ranking-user-card p {
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  .ranking-user-card:hover p {
+    color: #009cda;
+  }
+}

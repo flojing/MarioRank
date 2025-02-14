@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Title from "../assets/images/Mario-RANK-12-02-2025.png";
 import Mario from "../assets/images/Mario.png";
-import BlueButton from "../assets/images/blue-button.png";
 import { useAuth } from "../services/authContext";
 import "../styles/Home.css";
 
@@ -49,6 +48,7 @@ export default function Home() {
         `${import.meta.env.VITE_API_URL}/api/users`,
         {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
@@ -87,6 +87,7 @@ export default function Home() {
         `${import.meta.env.VITE_API_URL}/api/auth/login`,
         {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
@@ -113,20 +114,38 @@ export default function Home() {
 
   return (
     <>
-      <img src={Title} alt="titre" className="title-img" />
-      <img src={Mario} alt="Mario" className="mario-img" />
+      <div className="home-images-container">
+        <div className="title-container">
+          <div className="background-cup"> </div>
+          <img src={Title} alt="titre" className="title-img" />
+        </div>
+        <img src={Mario} alt="Mario" className="mario-img" />
+      </div>
       <p className="home-welcome-text">
         Connectez-vous pour classer les items de Mario Kart selon vos goûts
         personnels et consulter les préférences des autres pilotes !
       </p>
+      <div className="lakitu-container">
+        <img
+          src="/src/assets/images/lakitu.gif"
+          alt="Lakitu"
+          className="lakitu-gif"
+        />
+      </div>
       <div className="button-wrapper">
         <div
           className="home-login-button-container"
           onClick={openModal}
           onKeyDown={openModal}
         >
-          <img src={BlueButton} alt="Bouton bleu" className="blue-button" />
-          <p className="home-login-button-text">Letseu go!</p>
+          <span className="home-login-button-text">
+            Letseu go !
+            <img
+              src="/src/assets/images/mario-kart-gif-2.gif"
+              alt="Mario Kart"
+              className="login-gif"
+            />
+          </span>
         </div>
       </div>
       {isModalOpen && (

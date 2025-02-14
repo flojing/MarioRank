@@ -8,6 +8,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+import Ranking from "./pages/Ranking";
 // Import the main app component
 import { AuthProvider } from "./services/authContext";
 
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/ranking",
+        element: <Ranking />,
       },
     ], // Renders the App component for the home page
   },
