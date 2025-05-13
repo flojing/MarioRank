@@ -34,7 +34,6 @@
   transform: rotate(180deg);
 }
 
-/* Garder la marge existante */
 .ranking-icon {
   margin-right: 36px;
 }
@@ -309,7 +308,7 @@
   grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
   gap: 0.5rem;
   min-height: 100px;
-  place-items: center; /* Centre les éléments horizontalement et verticalement */
+  place-items: center;
 }
 
 .draggable-card {
@@ -330,7 +329,7 @@
 }
 
 .draggable-card:hover .info-icon {
-  display: block; /* Afficher au survol de la carte */
+  display: block;
 }
 
 .draggable-card img {
@@ -354,7 +353,7 @@
   background: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   padding: 0.2rem;
-  display: none; /* Masquer par défaut */
+  display: none;
 }
 
 .info-icon:hover {
@@ -362,7 +361,7 @@
 }
 
 .card-small {
-  width: 60px; /* par exemple */
+  width: 60px;
   height: 60px;
   padding: 0.2rem;
   border-radius: 6px;
@@ -395,14 +394,14 @@
 
   .items-container {
     display: flex;
-    flex-wrap: wrap; /* Permet le retour à la ligne automatique */
+    flex-wrap: wrap;
     gap: 0.5rem;
-    justify-content: center; /* Centre les éléments horizontalement */
+    justify-content: center;
     min-height: 100px;
   }
 
   .card-small {
-    width: 80px; /* par exemple */
+    width: 80px;
     height: 80px;
     padding: 0.2rem;
     border-radius: 6px;

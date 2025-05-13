@@ -6,7 +6,7 @@ interface DraggableItemProps {
   imageSrc: string;
   altText: string;
   children: React.ReactNode;
-  showOnlyImage?: boolean; // nouveau prop
+  showOnlyImage?: boolean;
 }
 
 export const DraggableItem: React.FC<DraggableItemProps> = ({
@@ -23,13 +23,11 @@ export const DraggableItem: React.FC<DraggableItemProps> = ({
     ? { transform: `translate3d(${transform.x}px, ${transform.y}px, 0)` }
     : undefined;
 
-  // Bloque le clic sur la carte
   const handleCardClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
   };
 
-  // Stoppe le drag si on clique sur l'icône
   const handleIconMouseDown = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
@@ -40,11 +38,7 @@ export const DraggableItem: React.FC<DraggableItemProps> = ({
       style={style}
       {...listeners}
       {...attributes}
-      className={
-        showOnlyImage
-          ? "draggable-card card-small" // classe spéciale si on veut un style différent
-          : "draggable-card"
-      }
+      className={showOnlyImage ? "draggable-card card-small" : "draggable-card"}
       onClick={handleCardClick}
     >
       <img src={imageSrc} alt={altText} draggable={false} />

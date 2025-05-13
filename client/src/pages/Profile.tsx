@@ -35,7 +35,6 @@ export default function Profile() {
   }
 
   const mouseSensor = useSensor(MouseSensor, {
-    // Nécessite un mouvement de 5px pour activer le drag
     activationConstraint: {
       distance: 5,
     },
@@ -55,7 +54,6 @@ export default function Profile() {
     const itemId = active.id;
     const category = over.id;
 
-    // Find item in any of the possible locations
     const draggedItem = [
       ...items,
       ...goodItems,
@@ -65,13 +63,11 @@ export default function Profile() {
 
     if (!draggedItem) return;
 
-    // Remove from current location
     setItems((prev) => prev.filter((item) => item.id !== itemId));
     setGoodItems((prev) => prev.filter((item) => item.id !== itemId));
     setMediumItems((prev) => prev.filter((item) => item.id !== itemId));
     setBadItems((prev) => prev.filter((item) => item.id !== itemId));
 
-    // Add to new location
     let rankValue: number | null = null;
     switch (category) {
       case "good":
@@ -96,7 +92,6 @@ export default function Profile() {
 
     try {
       if (rankValue === null) {
-        // Delete ranking
         await fetch(
           `${import.meta.env.VITE_API_URL}/api/rankings/${user.id}/${itemId}`,
           {
@@ -105,7 +100,6 @@ export default function Profile() {
           },
         );
       } else {
-        // Update or create ranking
         await fetch(`${import.meta.env.VITE_API_URL}/api/rankings`, {
           method: "POST",
           headers: {
@@ -140,7 +134,7 @@ export default function Profile() {
       if (response.ok) {
         logout();
         navigate("/");
-        toastSuccess("À bientôt pilote ! 🏁"); // Ajout du toast
+        toastSuccess("À bientôt pilote ! 🏁");
       }
     } catch (error) {
       console.error("Error during logout:", error);
@@ -188,7 +182,6 @@ export default function Profile() {
   useEffect(() => {
     const fetchItemsAndRankings = async () => {
       try {
-        // Fetch both items and rankings in parallel
         const [itemsResponse, rankingsResponse] = await Promise.all([
           fetch(`${import.meta.env.VITE_API_URL}/api/items`, {
             credentials: "include",
@@ -203,15 +196,11 @@ export default function Profile() {
           const rankings: { item_id: number; ranking: number }[] =
             await rankingsResponse.json();
 
-          // Sort items based on their rankings
           const goodItems: Item[] = [];
           const mediumItems: Item[] = [];
           const badItems: Item[] = [];
           const unrankedItems: Item[] = [];
 
-          // First, identify all ranked items
-
-          // Sort items into their respective categories
           for (const item of items) {
             const ranking = rankings.find((r) => r.item_id === item.id);
             if (ranking) {
@@ -233,7 +222,6 @@ export default function Profile() {
             }
           }
 
-          // Update all states
           setGoodItems(goodItems);
           setMediumItems(mediumItems);
           setBadItems(badItems);
@@ -261,16 +249,13 @@ export default function Profile() {
     setIsDescriptionModalOpen(true);
   };
 
-  // Fonction pour réinitialiser les catégories
   const handleReset = async () => {
     try {
-      // Supprimer tous les classements de l'utilisateur
       await fetch(`${import.meta.env.VITE_API_URL}/api/rankings/${user.id}`, {
         method: "DELETE",
         credentials: "include",
       });
 
-      // Remettre tous les items dans items-to-sort
       setItems((prevItems) => [
         ...prevItems,
         ...goodItems,

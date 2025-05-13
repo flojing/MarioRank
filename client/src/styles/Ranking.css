@@ -78,13 +78,10 @@
   max-width: 800px;
   max-height: 80vh;
   overflow-y: auto;
-
-  /* Personnalisation de la scrollbar */
   scrollbar-width: thin;
   scrollbar-color: #009cda #1a1a1a;
 }
 
-/* Styles pour Webkit (Chrome, Safari, etc.) */
 .ranking-modal-content::-webkit-scrollbar {
   width: 8px;
 }

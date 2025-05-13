@@ -22,7 +22,7 @@ body {
 
 .button-wrapper {
   text-align: center;
-  position: relative; /* Ajout pour le positionnement */
+  position: relative;
 }
 
 .home-login-button-container {
@@ -128,14 +128,14 @@ body {
   background-color: #2f2f2f;
   color: white;
   padding: 10px;
-  border: 2px solid transparent; /* Ajout d'une bordure transparente */
+  border: 2px solid transparent;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
-  transition: all 0.3s ease; /* Changé pour inclure toutes les transitions */
+  transition: all 0.3s ease;
   width: 60%;
   margin: 0 auto;
-  box-sizing: border-box; /* Assure que la bordure est incluse dans la largeur/hauteur */
+  box-sizing: border-box;
 }
 
 .modal-login-form button:hover {
@@ -162,8 +162,8 @@ body {
 
 .background-cup {
   position: absolute;
-  width: 200px; /* Taille fixe pour éviter la déformation */
-  height: 200px; /* Taille fixe pour éviter la déformation */
+  width: 200px;
+  height: 200px;
   background: url("../assets/images/img_link-cup.png") no-repeat center center;
   background-size: contain;
   z-index: -1;
@@ -181,8 +181,8 @@ body {
 .title-img {
   position: relative;
   width: 100%;
-  max-width: 400px; /* Limite la taille maximale */
-  height: auto; /* Garde le ratio */
+  max-width: 400px;
+  height: auto;
   z-index: 1;
 }
 
@@ -210,14 +210,13 @@ body {
   }
 }
 
-/* Ajuster pour desktop */
 @media (min-width: 600px) {
   .lakitu-container {
     height: 150px;
-    position: absolute; /* Position absolue en desktop */
-    top: 10%; /* Centre verticalement */
-    transform: translateY(-50%); /* Ajuste le centrage vertical */
-    z-index: 1; /* Pour passer derrière le bouton */
+    position: absolute;
+    top: 10%;
+    transform: translateY(-50%);
+    z-index: 1;
   }
 
   .lakitu-gif {
@@ -234,11 +233,10 @@ body {
   }
 }
 
-/* Ajustez la version desktop */
 @media (min-width: 600px) {
   .background-cup {
-    width: 300px; /* Plus grande taille pour desktop */
-    height: 300px; /* Plus grande taille pour desktop */
+    width: 300px;
+    height: 300px;
   }
 
   .title-container {

@@ -17,7 +17,7 @@ interface Item {
   item_image: string;
   item_name: string;
   item_description: string;
-  ranking: number; // Ajouter le champ ranking
+  ranking: number;
 }
 
 export default function Ranking() {
@@ -57,7 +57,6 @@ export default function Ranking() {
     setIsUserModalOpen(true);
 
     try {
-      // Première requête pour obtenir les rankings
       const rankingsResponse = await fetch(
         `${import.meta.env.VITE_API_URL}/api/rankings/${user.id}`,
         {
@@ -68,7 +67,6 @@ export default function Ranking() {
       if (rankingsResponse.ok) {
         const rankingsData = await rankingsResponse.json();
 
-        // Deuxième requête pour obtenir tous les items
         const itemsResponse = await fetch(
           `${import.meta.env.VITE_API_URL}/api/items`,
           {
@@ -79,7 +77,6 @@ export default function Ranking() {
         if (itemsResponse.ok) {
           const items = await itemsResponse.json();
 
-          // Combiner les données des rankings avec les informations des items
           const completeItems = rankingsData.map(
             (ranking: { item_id: number; ranking: number }) => {
               const item = items.find(
