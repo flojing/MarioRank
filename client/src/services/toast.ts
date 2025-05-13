@@ -3,21 +3,25 @@ import { toast } from "react-toastify";
 const toastSuccess = (title: string) => {
   toast.success(title, {
     position: "top-center",
-    autoClose: 2000,
+    autoClose: 3000,
     closeOnClick: true,
     pauseOnHover: true,
-    hideProgressBar: true,
+    hideProgressBar: false,
     theme: "colored",
+    style: {
+      background: "#009cda",
+      color: "white",
+    },
   });
 };
 
 const toastError = (title: string) => {
   toast.error(title, {
     position: "top-center",
-    autoClose: 2000,
+    autoClose: 3000,
     closeOnClick: true,
     pauseOnHover: true,
-    hideProgressBar: true,
+    hideProgressBar: false,
     theme: "colored",
   });
 };

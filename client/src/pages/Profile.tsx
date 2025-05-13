@@ -17,6 +17,7 @@ import {
 } from "@dnd-kit/core";
 import { DraggableItem } from "../components/DraggableItem";
 import { Droppable } from "../components/Droppable";
+import { toastSuccess } from "../services/toast";
 
 export default function Profile() {
   const { user, setAuth, logout } = useAuth();
@@ -139,11 +140,10 @@ export default function Profile() {
       if (response.ok) {
         logout();
         navigate("/");
-      } else {
-        console.error("Logout failed:", await response.text());
+        toastSuccess("À bientôt pilote ! 🏁"); // Ajout du toast
       }
     } catch (error) {
-      console.error("Erreur lors de la déconnexion:", error);
+      console.error("Error during logout:", error);
     }
   };
 

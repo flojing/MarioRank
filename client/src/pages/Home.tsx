@@ -2,8 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Title from "../assets/images/Mario-RANK-12-02-2025.png";
 import Mario from "../assets/images/Mario.png";
+import HereWeGo from "../assets/images/sm64_mario_here_we_go.wav";
 import { useAuth } from "../services/authContext";
 import "../styles/Home.css";
+import { toastError, toastSuccess } from "../services/toast";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,6 +23,8 @@ export default function Home() {
   const navigate = useNavigate();
 
   const openModal = () => {
+    const audio = new Audio(HereWeGo);
+    audio.play();
     setIsModalOpen(true);
   };
 
@@ -39,7 +43,7 @@ export default function Home() {
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (registerData.password !== registerData.confirmPassword) {
-      alert("Les mots de passe ne correspondent pas");
+      toastError("Les mots de passe ne correspondent pas");
       return;
     }
 
@@ -61,7 +65,7 @@ export default function Home() {
       );
 
       if (response.ok) {
-        alert("Inscription réussie !");
+        toastSuccess("Inscription réussie !");
         setRegisterData({
           pseudo: "",
           email: "",
@@ -75,7 +79,7 @@ export default function Home() {
       }
     } catch (error) {
       console.error("Erreur lors de l'inscription :", error);
-      alert("Erreur lors de l'inscription");
+      toastError("Erreur lors de l'inscription");
     }
   };
 
@@ -104,11 +108,11 @@ export default function Home() {
         navigate("/profile");
       } else {
         const errorData = await response.json();
-        alert(errorData.error);
+        toastError(errorData.error);
       }
     } catch (error) {
       console.error("Erreur lors de la connexion :", error);
-      alert("Erreur lors de la connexion");
+      toastError("Erreur lors de la connexion");
     }
   };
 
@@ -158,7 +162,7 @@ export default function Home() {
             >
               X
             </span>
-            <h2>S'identifier</h2>
+            <h2 className="login-h2">S'identifier</h2>
             <form className="modal-login-form" onSubmit={handleLogin}>
               <label htmlFor="email">Adresse e-mail</label>
               <input
@@ -179,7 +183,7 @@ export default function Home() {
               <button type="submit">Se connecter</button>
             </form>
             <div className="login-divider"> </div>
-            <h2>S'enregistrer</h2>
+            <h2 className="login-h2">S'enregistrer</h2>
             <form className="modal-login-form" onSubmit={handleRegister}>
               <label htmlFor="pseudo">Pseudo</label>
               <input

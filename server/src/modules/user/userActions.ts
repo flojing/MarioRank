@@ -33,7 +33,7 @@ const add: RequestHandler = async (req, res, next) => {
 
     const existingEmail = await userRepository.readByEmail(email);
     if (existingEmail) {
-      res.status(400).json({ error: "Cet adresse email est déjà utilisé" });
+      res.status(400).json({ error: "Cette adresse email est déjà utilisée" });
       return;
     }
 
@@ -62,7 +62,7 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-const updateAvatar: RequestHandler = async (req, res) => {
+const editAvatar: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
     const { profilePic } = req.body;
@@ -88,4 +88,4 @@ const getAllUsers: RequestHandler = async (req, res) => {
   }
 };
 
-export default { add, updateAvatar, getAllUsers };
+export default { add, editAvatar, getAllUsers };

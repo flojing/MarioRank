@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 /* ************************************************************************* */
 
+import { ToastContainer } from "react-toastify";
 import App from "./App";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
@@ -55,6 +56,7 @@ if (rootElement == null) {
 // Render the app inside the root element
 createRoot(rootElement).render(
   <StrictMode>
+    <ToastContainer />
     <AuthProvider>
       <RouterProvider router={router} />
     </AuthProvider>
